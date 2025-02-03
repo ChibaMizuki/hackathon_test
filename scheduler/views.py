@@ -21,8 +21,11 @@ class GeneratingView(RedirectView):
     pattern_name = 'result'
 
     def get(self, request, *args, **kwargs):
-        # 生成処理（仮で3秒待つ処理を入れる）
-        time.sleep(3)
+        # 生成処理（仮で1秒待つ処理を入れる）
+        time.sleep(1)
+        last = ScheduleCriteria.objects.last()
+        department = last.department
+        print(department)
         return super().get(request, *args, **kwargs)
 
 class ResultView(TemplateView):
