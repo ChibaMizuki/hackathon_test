@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .forms import ScheduleCriteriaForm
 from .models import ScheduleCriteria
 import time
+from scheduler.make_timetable.main import make_timetable
 
 class HomeView(TemplateView):
     template_name = "scheduler/home.html"
@@ -21,11 +22,12 @@ class GeneratingView(RedirectView):
     pattern_name = 'result'
 
     def get(self, request, *args, **kwargs):
-        # 生成処理（仮で1秒待つ処理を入れる）
-        time.sleep(1)
+        # 生成処理
         last = ScheduleCriteria.objects.last()
         department = last.department
-        print(department)
+        
+        test = make_timetable(department)
+        print(test)
         return super().get(request, *args, **kwargs)
 
 class ResultView(TemplateView):

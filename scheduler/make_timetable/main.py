@@ -7,7 +7,6 @@ def make_timetable(conditions):
         '曜日' : ["木"],
         '時限' : [5]
         })
-    print(df_timetable)
     return df_timetable
 
 

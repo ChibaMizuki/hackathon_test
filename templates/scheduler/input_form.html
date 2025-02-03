@@ -1,6 +1,24 @@
 <h1>条件を入力してください</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <label for="{{ form.department.id_for_label }}">学部</label>
+    {{ form.department }}
+    <label for="{{ form.department_priority.id_for_label }}">優先度</label>
+    {{ form.department_priority }}
+    <br><br>
+
+    <label for="{{ form.easy_level.id_for_label }}">楽単度</label>
+    {{ form.easy_level }}
+    <label for="{{ form.easy_level_priority.id_for_label }}">優先度</label>
+    {{ form.easy_level_priority }}
+    <br><br>
+
+    <label for="{{ form.required.id_for_label }}">必修を含む</label>
+    {{ form.required }}
+    <label for="{{ form.required_priority.id_for_label }}">優先度</label>
+    {{ form.required_priority }}
+    <br><br>
+
     <button type="submit">決定</button>
 </form>
