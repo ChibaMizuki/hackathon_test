@@ -1,0 +1,6 @@
+<h1>条件を入力してください</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">決定</button>
+</form>
