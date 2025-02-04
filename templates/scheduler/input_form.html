@@ -1,23 +1,68 @@
+{% load static %}
+<script src="{% static 'js/script.js' %}"></script>
+
 <h1>条件を入力してください</h1>
 <form method="post">
     {% csrf_token %}
 
-    <label for="{{ form.department.id_for_label }}">学部</label>
+    <label for="{{ form.semester.id_for_label }}">学期</label>
+    {{ form.semester }}
+    <br><br>
+
+    <label for="{{ form.grade.id_for_label }}">学年</label>
+    {{ form.grade }}
+    <br><br>
+
+    <label for="{{ form.faculty.id_for_label }}">学部</label>
+    {{ form.faculty }}
+    <br><br>
+
+    <label for="{{ form.department.id_for_label }}">学科</label>
     {{ form.department }}
-    <label for="{{ form.department_priority.id_for_label }}">優先度</label>
-    {{ form.department_priority }}
     <br><br>
 
     <label for="{{ form.easy_level.id_for_label }}">楽単度</label>
     {{ form.easy_level }}
-    <label for="{{ form.easy_level_priority.id_for_label }}">優先度</label>
+    <label for="{{ form.easy_level_priority.id_for_label }}">楽単度優先度</label>
     {{ form.easy_level_priority }}
     <br><br>
 
-    <label for="{{ form.required.id_for_label }}">必修を含む</label>
+    <label for="{{ form.required.id_for_label }}">必修</label>
     {{ form.required }}
-    <label for="{{ form.required_priority.id_for_label }}">優先度</label>
+    <label for="{{ form.required_priority.id_for_label }}">必修優先度</label>
     {{ form.required_priority }}
+    <br><br>
+
+    <label for="{{ form.a_group_limit.id_for_label }}">A群必要単位数下限</label>
+    {{ form.a_group_limit }}
+    <br><br>
+
+    <label for="{{ form.b_group_limit.id_for_label }}">B群必要単位数下限</label>
+    {{ form.b_group_limit }}
+    <br><br>
+
+    <label for="{{ form.c_group_limit.id_for_label }}">C群必要単位数下限</label>
+    {{ form.c_group_limit }}
+    <br><br>
+
+    <label for="{{ form.content_type.id_for_label }}">授業内容区分</label>
+    {{ form.content_type }}
+    <br><br>
+
+    <label for="{{ form.is_ondemand_priority.id_for_label }}">オンデマ優先</label>
+    {{ form.is_ondemand_priority }}
+    <br><br>
+
+    <label for="{{ form.has_empty_slots.id_for_label }}">空コマの有無</label>
+    {{ form.has_empty_slots }}
+    <br><br>
+
+    <label for="{{ form.full_day_off.id_for_label }}">全休</label>
+    {{ form.full_day_off }}
+    <br><br>
+
+    <label for="{{ form.excluded_periods.id_for_label }}">入れない時限</label>
+    {{ form.excluded_periods }}
     <br><br>
 
     <button type="submit">決定</button>

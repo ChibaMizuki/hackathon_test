@@ -23,10 +23,9 @@ class GeneratingView(RedirectView):
 
     def get(self, request, *args, **kwargs):
         # 生成処理
-        last = ScheduleCriteria.objects.last()
-        department = last.department
-        
-        test = make_timetable(department)
+        condition = ScheduleCriteria.objects.last()
+
+        test = make_timetable(condition)
         print(test)
         return super().get(request, *args, **kwargs)
 
@@ -35,5 +34,7 @@ class ResultView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['criteria'] = ScheduleCriteria.objects.last()
+        last = ScheduleCriteria.objects.last()
+        print(last.department)
+        context['criteria'] = last
         return context
