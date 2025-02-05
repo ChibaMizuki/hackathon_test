@@ -1,10 +1,16 @@
 import pandas as pd
 
 
-def score(df_cand_subject, conditions):
-    list_error = [True, "正常に終了"]
-
-    return df_cand_subject, list_error
+def select_sub(df_cand_subject, conditions):
+    jigen = df_cand_subject[df_cand_subject["曜日"] == "火"]["時限"].iloc[0]
+    print(jigen[0], conditions.semester)
+    df1 = pd.DataFrame(
+        data={'時限': [[1], [1, 2], [3]]}
+    )
+    df1.to_csv("data/test.csv")
+    print(df1)
+    
+    return df_cand_subject
 
 
 class req:
