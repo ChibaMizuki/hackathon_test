@@ -1,6 +1,6 @@
 import pandas as pd
-from select_sub import select_sub
-from score import score
+from scheduler.make_timetable.select_sub import select_sub
+from scheduler.make_timetable.score import score
 import ast
 
 
