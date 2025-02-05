@@ -2,6 +2,15 @@
 <script src="{% static 'js/script.js' %}"></script>
 
 <h1>条件を入力してください</h1>
+
+{% if form.non_field_errors %}
+    <div class="error-message">
+        {% for error in form.non_field_errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
 
@@ -45,8 +54,12 @@
     {{ form.c_group_limit }}
     <br><br>
 
-    <label for="{{ form.content_type.id_for_label }}">授業内容区分</label>
-    {{ form.content_type }}
+    <label for="{{ form.attendance_priority.id_for_label }}">出席</label>
+    {{ form.attendance_priority }}
+    <label for="{{ form.report_priority.id_for_label }}">レポート</label>
+    {{ form.report_priority }}
+    <label for="{{ form.test_priority.id_for_label }}">テスト</label>
+    {{ form.test_priority }}
     <br><br>
 
     <label for="{{ form.is_ondemand_priority.id_for_label }}">オンデマ優先</label>

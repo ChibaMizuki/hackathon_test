@@ -25,7 +25,8 @@ class ScheduleCriteriaForm(forms.ModelForm):
             'easy_level', 'easy_level_priority',
             'required', 'required_priority',
             'a_group_limit', 'b_group_limit', 'c_group_limit',
-            'content_type', 'is_ondemand_priority',
+            'attendance_priority', 'report_priority', 'test_priority',
+            'is_ondemand_priority',
             'full_day_off', 'has_empty_slots',
             'excluded_periods'
         ]

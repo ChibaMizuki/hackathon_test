@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 class ScheduleCriteria(models.Model):
@@ -38,10 +39,9 @@ class ScheduleCriteria(models.Model):
     
     # 要望レベルの選択肢
     PRIORITY_CHOICES = [
-        (1, '絶対'),
-        (2, '高'),
-        (3, '中'),
-        (4, '低'),
+        (1, '最優先'),
+        (2, '優先'),
+        (3, '考慮せず'),
     ]
     
     # 授業内容区分の選択肢
@@ -65,7 +65,7 @@ class ScheduleCriteria(models.Model):
 
     # 楽単度のフィールド
     easy_level = models.IntegerField(choices=EASY_LEVEL_CHOICES, default=1)
-    easy_level_priority = models.IntegerField(choices=PRIORITY_CHOICES, default=4)  # 要望レベルを追加
+    easy_level_priority = models.IntegerField(choices=PRIORITY_CHOICES, default=3)  # 要望レベルを追加
 
     # 必修含むかどうかのフィールド
     required = models.BooleanField(default=True)  # 必修含むかどうか
@@ -77,7 +77,9 @@ class ScheduleCriteria(models.Model):
     c_group_limit = models.IntegerField(default=0, blank=True, null=True)  # C群下限値
 
     # 授業内容区分
-    content_type = models.CharField(max_length=20, choices=CONTENT_TYPE_CHOICES, default='attendance')
+    attendance_priority = models.IntegerField(choices=PRIORITY_CHOICES, default=1)
+    report_priority = models.IntegerField(choices=PRIORITY_CHOICES, default=2)
+    test_priority = models.IntegerField(choices=PRIORITY_CHOICES, default=3)
 
     # オンデマ優先か否か
     is_ondemand_priority = models.BooleanField(default=False)
@@ -103,7 +105,9 @@ class ScheduleCriteria(models.Model):
             f"{self.get_easy_level_display()}({self.get_easy_level_priority_display()})\n "
             f"{'必修含む' if self.required else '必修なし'}({self.get_required_priority_display()})\n "
             f"A群: {self.a_group_limit}単位 B群: {self.b_group_limit}単位 C群: {self.c_group_limit}単位\n "
-            f"授業内容: {self.get_content_type_display()}\n "
+            f"出席: {self.get_attendance_priority_display()}\n "
+            f"レポート: {self.get_report_priority_display()}\n "
+            f"テスト: {self.get_test_priority_display()}\n "
             f"{'オンデマ優先' if self.is_ondemand_priority else 'オンデマ優先なし'}\n "
             f"全休: {self.full_day_off}日\n "
             f"{'空コマあり' if self.has_empty_slots else '空コマなし'}\n "
