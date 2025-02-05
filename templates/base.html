@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <title>{% block title %}Time Table{% endblock %}</title>
+</head> 
+
+
+<body>
+  {% block content %}
+  {% endblock %}
+  <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+
+</html>

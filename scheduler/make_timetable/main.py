@@ -12,7 +12,7 @@ def make_timetable(conditions):
     df_cand_subject, list_error = score(df_cand_subject, conditions)
     if not list_error[0]:
         return df_timetable, list_error
-    df_timetable, list_error = select_sub(df_cand_subject, conditions)
+    #df_timetable, list_error = select_sub(df_cand_subject, conditions)
     #print("学部表示:"+conditions.department)
     #df_cand_subject = score(df_timetable, df_cand_subject, conditions)
 

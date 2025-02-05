@@ -1,5 +1,7 @@
+{% extends "base.html" %}
 {% load static %}
-<script src="{% static 'js/script.js' %}"></script>
+
+{% block content %}
 
 <h1>条件を入力してください</h1>
 
@@ -36,10 +38,8 @@
     {{ form.easy_level_priority }}
     <br><br>
 
-    <label for="{{ form.required.id_for_label }}">必修</label>
+    <label for="{{ form.required.id_for_label }}">必修最優先で生成</label>
     {{ form.required }}
-    <label for="{{ form.required_priority.id_for_label }}">必修優先度</label>
-    {{ form.required_priority }}
     <br><br>
 
     <label for="{{ form.a_group_limit.id_for_label }}">A群必要単位数下限</label>
@@ -66,7 +66,7 @@
     {{ form.is_ondemand_priority }}
     <br><br>
 
-    <label for="{{ form.has_empty_slots.id_for_label }}">空コマの有無</label>
+    <label for="{{ form.has_empty_slots.id_for_label }}">空コマを含む</label>
     {{ form.has_empty_slots }}
     <br><br>
 
@@ -80,3 +80,4 @@
 
     <button type="submit">決定</button>
 </form>
+{% endblock %}

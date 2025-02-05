@@ -9,6 +9,7 @@ class ScheduleCriteriaForm(forms.ModelForm):
         (3, '3限'),
         (4, '4限'),
         (5, '5限'),
+        (6, '6限'),
     ]
     excluded_periods = forms.MultipleChoiceField(
         choices=EXCLUDED_PERIOD_CHOICES,
@@ -23,7 +24,7 @@ class ScheduleCriteriaForm(forms.ModelForm):
             'semester', 'grade',
             'faculty', 'department',
             'easy_level', 'easy_level_priority',
-            'required', 'required_priority',
+            'required',
             'a_group_limit', 'b_group_limit', 'c_group_limit',
             'attendance_priority', 'report_priority', 'test_priority',
             'is_ondemand_priority',
