@@ -5,8 +5,9 @@ import ast
 
 
 def make_timetable(conditions):
-    df_cand_subject = pd.read_csv("data/subject.csv")
+    df_cand_subject = pd.read_csv("data/subject2.csv")
     df_timetable = pd.DataFrame()
+    df_cand_subject.set_index("科目キー", inplace=True)
     df_cand_subject["時限"] = df_cand_subject["時限"].apply(ast.literal_eval)
     df_cand_subject["score"] = 10
     df_cand_subject, list_error = score(df_cand_subject, conditions)
