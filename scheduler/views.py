@@ -31,14 +31,8 @@ class GeneratingView(RedirectView):
         if not list_error[0]:
             error_message = list_error[1]
             return redirect(f"{reverse('result')}?error={error_message}")
-        # else:
-        #     request.session['timetable'] = timetable.to_dict(orient="records")
-        timetable = [
-            {'科目名': 'A', '曜日': '火', '時限': [1], 'URL': 'testa.com'},
-            {'科目名': 'B', '曜日': '水', '時限': [2, 3], 'URL': 'testb.com'},
-            {'科目名': 'concept building and discussion', '曜日': '金', '時限': [2, 3, 4, 5], 'URL': 'https://celese.jp/ja/courses/undergraduate/cbd1/'}
-        ]
-        request.session['timetable'] = timetable
+        else:
+            request.session['timetable'] = timetable.to_dict(orient="records")
         return super().get(request, *args, **kwargs)
 
 class ResultView(TemplateView):

@@ -9,7 +9,7 @@ def make_timetable(conditions):
     df_timetable = pd.DataFrame()
     df_cand_subject.set_index("科目キー", inplace=True)
     df_cand_subject["時限"] = df_cand_subject["時限"].apply(ast.literal_eval)
-    df_cand_subject["score"] = 10
+    #df_cand_subject["score"] = 10
     #df_cand_subject, list_error = score(df_cand_subject, conditions)
     #if not list_error[0]:
     #    return df_timetable, list_error

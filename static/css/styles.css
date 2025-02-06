@@ -15,3 +15,69 @@ th, td {
     padding: 15px;
     min-width: 100px; /* 曜日や時限の幅を広げる */
 }
+
+.form-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    gap: 10px; /* 要素間の余白を追加 */
+}
+
+.form-group label {
+    flex-shrink: 0; /* ラベルのサイズを固定 */
+    width: 150px; /* ラベルの横幅を統一 */
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    flex-grow: 1; /* 入力フィールドをできるだけ広げる */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.excluded-periods-container {
+    display: flex;
+    flex-wrap: wrap; /* 横幅に収まりきらない場合は折り返す */
+    align-items: center;
+    gap: 10px;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}

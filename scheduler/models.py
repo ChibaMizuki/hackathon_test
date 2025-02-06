@@ -85,8 +85,8 @@ class ScheduleCriteria(models.Model):
     # 全休のフィールド
     full_day_off = models.IntegerField(choices=[(i, f'{i}日') for i in range(0, 6)], default=0)
 
-    # 空コマの有無
-    has_empty_slots = models.BooleanField(default=False)
+    # 空コマの量
+    has_empty_slots = models.BooleanField(default=True)
     
     # 入れない時限
     excluded_periods = models.JSONField(default=list, blank=True)  # 空リストをデフォルトに設定

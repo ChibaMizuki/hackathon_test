@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <h1>結果</h1>
@@ -18,19 +19,32 @@
                 <th>水</th>
                 <th>木</th>
                 <th>金</th>
+                <th>土</th>
                 <th>その他</th>
             </tr>
-            {% for i in "123456" %}
+            {% for i in "1234567" %}
             <tr>
                 <td>{{ i }}限</td>
-                {% for j in "月火水木金他" %}
+                {% for j in "月火水木金土無" %}
                     <td>
-                    {% for row in timetable %}
-                        {% if row.曜日 == j and i|add:"0" in row.時限 %}
-                            <a href="{{ row.URL }}">{{ row.科目名 }}</a>
+                    {% for cell in timetable %}
+                        {% if cell.曜日 == j and i|add:"0" in cell.時限 %}
+                            {% if cell.群 == "A" %}
+                                <div style="width: 100px; height: 40px; background-color: #ff9393; color: white; text-align: center; line-height: 40px;">
+                                <a href="{{ cell.URL }}">{{ cell.科目名 }}</a>
+                                </div>
+                            {% elif cell.群 == "B" %}
+                                <div style="width: 100px; height: 40px; background-color: #9393ff; color: white; text-align: center; line-height: 40px;">
+                                <a href="{{ cell.URL }}">{{ cell.科目名 }}</a>
+                                </div>
+                            {% elif cell.群 == "C" %}
+                                <div style="width: 100px; height: 40px; background-color: #ffff93; color: white; text-align: center; line-height: 40px;">
+                                <a href="{{ cell.URL }}">{{ cell.科目名 }}</a>
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
-                </td>
+                    </td>
                 {% endfor %}
             </tr>
             {% endfor %}
@@ -42,4 +56,5 @@
 <p>{{ criteria|linebreaksbr }}</p>
 
 <a href="{% url 'input_form' %}">条件の再入力</a>
+<a href="{% url 'home' %}">ホーム</a>
 {% endblock %}
