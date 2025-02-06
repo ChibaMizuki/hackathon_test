@@ -99,6 +99,8 @@ def select_sub(df_cand_subject, conditions):
                 s_append = df_cand_subject.loc[max_label]
                 if not s_append["score"] >= 10000:
                     is_fin = True
+    df_timetable = df_timetable[["科目名", "曜日", "時限", "群"]]
+    df_timetable["URL"] = "https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=2602012001012024260101200526&pLng=jp"
 
     return df_timetable, list_error
 
