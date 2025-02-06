@@ -44,7 +44,7 @@ def select_sub(df_cand_subject, conditions):
     a_fin = conditions.a_group_limit == 0
     b_fin = conditions.b_group_limit == 0
     c_fin = conditions.c_group_limit == 0
-    do_full_day = False
+    do_full_day = conditions.full_day_off == 0
     df_timetable = pd.DataFrame()
 
     while not is_fin:
@@ -108,8 +108,7 @@ def select_sub(df_cand_subject, conditions):
                 s_append = df_cand_subject.loc[max_label]
                 if not s_append["score"] >= 10000:
                     is_fin = True
-    df_timetable = df_timetable[["科目名", "曜日", "時限", "群"]]
-    df_timetable["URL"] = "https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=2602012001012024260101200526&pLng=jp"
+    df_timetable = df_timetable[["科目名", "曜日", "時限", "群", "score", "URL"]]
     subkey_nasi = df_timetable[df_timetable["曜日"] == "無"].index.to_list()
     for i, key in enumerate(subkey_nasi):
         df_timetable.loc[key, "時限"] = [i+1]

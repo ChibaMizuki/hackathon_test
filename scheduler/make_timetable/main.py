@@ -5,10 +5,11 @@ import ast
 
 
 def make_timetable(conditions):
-    df_cand_subject = pd.read_csv("data/subject2.csv")
+    df_cand_subject = pd.read_csv("data/subject3.csv")
     df_timetable = pd.DataFrame()
     df_cand_subject.set_index("科目キー", inplace=True)
     df_cand_subject["時限"] = df_cand_subject["時限"].apply(ast.literal_eval)
+    df_cand_subject["学科"] = df_cand_subject["学科"].apply(ast.literal_eval)
     df_cand_subject, list_error = score(df_cand_subject, conditions)
     if not list_error[0]:
         return df_timetable, list_error
@@ -22,7 +23,7 @@ class req:
                  easy_level, easy_level_priority, is_ondemand_priority,
                  report_priority, attendance_priority, test_priority,
                  a_group_limit, b_group_limit, c_group_limit,
-                 full_day_off, has_empty_slots):
+                 full_day_off, has_empty_slots, excluded_periods):
         self.faculty = faculty
         self.department = department
         self.grade = grade
@@ -39,9 +40,10 @@ class req:
         self.c_group_limit = c_group_limit
         self.full_day_off = full_day_off
         self.has_empty_slots = has_empty_slots
+        self.excluded_periods = excluded_periods
 
 
 if __name__ == '__main__':
-    cond = req("基幹理工学部", "応用数理学科", 3, "秋学期", True,1,2,True,3,2,1, 2, 0, 0, 3, False)
+    cond = req("基幹理工学部", "応用数理学科", 3, "秋学期", True, 1, 2, True, 3, 2, 1, 2, 0, 0, 3, False, [1, 5])
     df, er = make_timetable(cond)
     print(df, er)

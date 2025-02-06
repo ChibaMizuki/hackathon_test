@@ -33,6 +33,7 @@ def score(df_cand_subject, conditions):
        "score"
     ] = 0
     for t in conditions.excluded_periods:
+        t = int(t)
         df.loc[df['時限'].apply(lambda x: t in x), "score"] = 0
 
     return df, list_error
@@ -55,8 +56,9 @@ class req:
 
 
 if __name__ == '__main__':
-    cond = req("基幹理工学部", "応用数理学科", 3, "秋学期", True,1,2,True,3,2,1,[1,5])
-    df_cand_subject = pd.read_csv("data/subject2.csv")
+    cond = req("基幹理工学部", "応用数理学科", 3, "春学期", True,1,2,True,3,2,1,[1,5])
+    df_cand_subject = pd.read_csv("data/subject3.csv")
     df_cand_subject["時限"] = df_cand_subject["時限"].apply(ast.literal_eval)
     df_timetable = pd.DataFrame()
-    score(df_cand_subject, cond)
+    df_cand_subject = score(df_cand_subject, cond)
+    print(df_cand_subject)
