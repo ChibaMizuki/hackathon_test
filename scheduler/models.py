@@ -4,22 +4,26 @@ from django.db import models
 class ScheduleCriteria(models.Model):
     # 学部の選択肢
     FACULTY_CHOICES = [
-        ('fundamental', '基幹'),
+        ('基幹理工学部', '基幹'),
         ('advanced', '先進'),
         ('creative', '創造'),
     ]
     
     # 学科
     DEPARTMENT_CHOICES = [
-        ('mathematics', '数学'),
-        ('intermedia', '表現'),
-        ('chemistry', '化学'),
+        ('数学科', '数学'),
+        ('応用数理学科', '応数'),
+        ('機械科学・航空宇宙学科', '機航'),
+        ('電子物理システム学科', '電物'),
+        ('情報通信学科', '情通'),
+        ('情報理工学科', '情理'),
+        ('表現工学科', '表現'),
     ]
     
     # 学期
     SEMESTER_CHOICES = [
-        ('spring', '春'),
-        ('autumn', '秋'),
+        ('春学期', '春'),
+        ('秋学期', '秋'),
     ]
     
     # 学年
@@ -57,10 +61,10 @@ class ScheduleCriteria(models.Model):
     grade = models.IntegerField(choices=GRADE_CHOICES, default=1)
 
     # 学部のフィールド
-    faculty = models.CharField(max_length=50, choices=FACULTY_CHOICES, default='fundamental')
+    faculty = models.CharField(max_length=50, choices=FACULTY_CHOICES, default='基幹理工学部')
     
     # 学科のフィールド
-    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES, default='mathematics')
+    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES, default='数学科')
 
     # 楽単度のフィールド
     easy_level = models.IntegerField(choices=EASY_LEVEL_CHOICES, default=1)

@@ -2,7 +2,7 @@ from django import forms
 from .models import ScheduleCriteria
 
 class ScheduleCriteriaForm(forms.ModelForm):
-    # 除外する時限を複数選択できるように、1~5限のボタンを作成
+    # 除外する時限を複数選択できるように、1~6限のボタンを作成
     EXCLUDED_PERIOD_CHOICES = [
         (1, '1限'),
         (2, '2限'),
