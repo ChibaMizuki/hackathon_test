@@ -16,7 +16,10 @@ def score_emptyslot(row, max_row):
     isbefore = max_row[1][0] != 1 and max_row[1][0] - row["時限"][-1] == 1
     isafter = max_row[1][-1] != 5 and max_row[1][-1] - row["時限"][0] == -1
     if row["曜日"] == max_row[0] and (isbefore or isafter):
-        return row["score"] + 40
+        if row["score"] == 0:
+            return 0
+        else:
+            return row["score"] + 40
     else:
         return row["score"]
 
