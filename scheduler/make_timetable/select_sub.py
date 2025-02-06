@@ -31,7 +31,10 @@ def score_0_fullday(row, list_youbi):
     if row["曜日"] in list_youbi or row["曜日"] == "無":
         return row["score"]
     else:
-        return 0
+        if row["score"] >= 10000:
+            return row["score"]
+        else:
+            return 0
 
 
 def select_sub(df_cand_subject, conditions):
