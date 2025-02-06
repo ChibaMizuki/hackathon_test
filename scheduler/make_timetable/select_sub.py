@@ -41,9 +41,9 @@ def select_sub(df_cand_subject, conditions):
     list_error = [True, "正常に終了"]
     is_fin = False
     req_fin = False
-    a_fin = False
-    b_fin = False
-    c_fin = False
+    a_fin = conditions.a_group_limit == 0
+    b_fin = conditions.b_group_limit == 0
+    c_fin = conditions.c_group_limit == 0
     do_full_day = False
     df_timetable = pd.DataFrame()
 
