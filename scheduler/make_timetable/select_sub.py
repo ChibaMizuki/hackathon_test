@@ -3,6 +3,7 @@ import ast
 
 
 def score_0(row, max_row):
+    # 選択した科目と時間が被っている科目のスコアを0にする
     if row["曜日"] == max_row[0] and len(set(row["時限"]) & set(max_row[1])) >= 1:
         return 0
     else:
@@ -10,11 +11,12 @@ def score_0(row, max_row):
 
 
 def score_emptyslot(row, max_row):
+    # 選択したコマの前と後の科目のスコアに40加算する
     if len(row["時限"]) == 0 or len(max_row[1]) == 0:
         return row["score"]
 
     isbefore = max_row[1][0] != 1 and max_row[1][0] - row["時限"][-1] == 1
-    isafter = max_row[1][-1] != 5 and max_row[1][-1] - row["時限"][0] == -1
+    isafter = max_row[1][-1] != 6 and max_row[1][-1] - row["時限"][0] == -1
     if row["曜日"] == max_row[0] and (isbefore or isafter):
         if row["score"] == 0:
             return 0
@@ -25,6 +27,7 @@ def score_emptyslot(row, max_row):
 
 
 def score_0_fullday(row, list_youbi):
+    # 全休希望日数を越さないように、その他の科目のスコアを0にする
     if row["曜日"] in list_youbi or row["曜日"] == "無":
         return row["score"]
     else:
