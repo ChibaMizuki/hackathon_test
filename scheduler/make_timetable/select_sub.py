@@ -104,7 +104,9 @@ def select_sub(df_cand_subject, conditions):
                     is_fin = True
     df_timetable = df_timetable[["科目名", "曜日", "時限", "群"]]
     df_timetable["URL"] = "https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=2602012001012024260101200526&pLng=jp"
-
+    subkey_nasi = df_timetable[df_timetable["曜日"] == "無"].index.to_list()
+    for i, key in enumerate(subkey_nasi):
+        df_timetable.loc[key, "時限"] = [i+1]
     return df_timetable, list_error
 
 
@@ -123,7 +125,7 @@ class req:
 
 
 if __name__ == '__main__':
-    cond = req("基幹理工学部", "応用数理学科", "3", "秋学期", 2, 0, 0, 3, False)
+    cond = req("基幹理工学部", "応用数理学科", "3", "秋学期", 12, 0, 0, 3, False)
     df_cand_subject = pd.read_csv("data/subject2.csv")
     df_cand_subject["時限"] = df_cand_subject["時限"].apply(ast.literal_eval)
     df_cand_subject.set_index("科目キー", inplace=True)
